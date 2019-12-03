@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int count_word(char const *str, char c)
+static int count_word(char const *str, char c)
 {
   int i;
   int count;
@@ -24,7 +24,7 @@ int count_word(char const *str, char c)
   return (count);
 }
 
-int   find_word_size(char const *str, int index, char c)
+static int find_word_size(char const *str, int index, char c)
 {
   int count_letters;
 
@@ -40,7 +40,7 @@ int   find_word_size(char const *str, int index, char c)
   return (count_letters);
 }
 
-int find_first_letter(char const *str, int index, char c)
+static int find_first_letter(char const *str, int index, char c)
 {
   while (str[index] == c && str[index])
     index++;

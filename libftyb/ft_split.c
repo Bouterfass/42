@@ -83,7 +83,7 @@ char    **ft_split(char const *s, char c)
 
 
 
-
+/*
 int		main(int ac, char **av)
 {
 	(void)ac;
@@ -108,3 +108,4 @@ int		main(int ac, char **av)
 
 	return (0);
 }
+*/

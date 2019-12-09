@@ -43,6 +43,6 @@ char *ft_itoa(int n)
 
 int main ()
 {
-  printf("itoa %s\n", ft_itoa(251616));
+  printf("itoa %s\n", ft_itoa(200));
   return (0);
 }

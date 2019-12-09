@@ -37,10 +37,11 @@ char *ft_strjoin(char const *s1, char const *s2)
   i = -1;
   while (s2[++i])
     s3[j++] = s2[i];
+  s3[j] = '\0';
   return (s3);
 }
 
-/*
+
 int main(int ac, char **av)
 {
   (void)ac;
@@ -48,4 +49,4 @@ int main(int ac, char **av)
   printf("%s\n", ft_strjoin(av[1], av[2]));
   return (0);
 }
-*/
+

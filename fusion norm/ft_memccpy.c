@@ -19,15 +19,14 @@ void	*ft_memccpy(void *to, void *from, int c, size_t size)
 	char	*d;
 
 	i = 0;
-	s = from;
-	d = to;
+	s = (char *)from;
+	d = (char *)to;
 	while (i < size)
 	{
 		d[i] = s[i];
-		if (s[i] == c)
-			return (to);
+		if (s[i] == (unsigned char)c)
+			return (to + i + 1);
 		i++;
 	}
-	d[i] = '\0';
-	return (to);
+	return (NULL);
 }

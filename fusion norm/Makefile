@@ -1,13 +1,19 @@
-GCC = gcc
+CC = gcc
 
-NAME = libft
+NAME = libft.a
 
-CFLAGS = -Wall -Wextra -Werror -Iincludes -o $(NAME)
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ./*.c
 
-all:
-	$(GCC) $(SRCS) $(CFLAGS)
+OBJ = $(SRCS:.c=.o)
+
+$(NAME):
+		$(CC) $(CFLAGS) -I. -c $(SRCS)
+		ar rc $(NAME) $(OBJ)
+		ranlib $(NAME)
+		
+all: $(NAME)
 
 clean:
 	rm -rf $(OBJ)

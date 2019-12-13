@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void static		*my_memset(void *block, int c, size_t size)
+static void		*my_memset(void *block, int c, size_t size)
 {
 	size_t			i;
 	unsigned char	*ptr;
@@ -34,7 +34,8 @@ void			*ft_calloc(size_t count, size_t eltsize)
 
 	size = count * eltsize;
 	value = malloc(size);
-	if (value != 0)
-		my_memset(value, 0, size);
+	if (!value)
+		return (NULL);
+	my_memset(value, 0, size);
 	return (value);
 }

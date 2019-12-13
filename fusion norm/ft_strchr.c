@@ -15,11 +15,9 @@
 char	*ft_strchr(const char *string, int c)
 {
 	int		i;
-	int		j;
 	char	*tmp;
 
 	i = 0;
-	j = 0;
 	tmp = (char *)string;
 	while (tmp[i] != '\0')
 	{

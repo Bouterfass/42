@@ -14,38 +14,33 @@
 #include <stdio.h>
 #include <string.h>
 
-void *ft_memccpy(void *to, void *from, int c, size_t size)
+void	*ft_memccpy(void *to, void *from, int c, size_t size)
 {
-	int i;
-	char *s;
-	char *d;
-	int len;
+	size_t	i;
+	char	*s;
+	char	*d;
 
 	i = 0;
-	s = from;
-	d = to;
-	len = 0;
-	while ((i < size))
+	s = (char *)from;
+	d = (char *)to;
+	while (i < size)
 	{
 		d[i] = s[i];
-		if (s[i] == c)
-			return (to);
+		if (s[i] == (unsigned char)c)
+			return (to + i + 1);
 		i++;
 	}
-	//d[i] = s[i];
-	d[i] = '\0';
-	return (to);
-}	
-
+	return (NULL);
+}
 
 int main ()
 {
 	char src[25] = "youcef";
 	char dest[25] = "";
-	memccpy(dest, src, 'q' , 2); 
+	memccpy(dest, src, 99 , 6); 
 	char s[25] = "youcef";
 	char d[25] = "";
-	ft_memccpy(d, s, 'q', 2);
+	ft_memccpy(d, s, 99, 6);
 	printf("vrai %s\n", dest);
 	printf("moi %s\n", d);
 	return (0);

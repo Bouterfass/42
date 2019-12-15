@@ -58,7 +58,7 @@ static int		find_first_letter(char const *str, int index, char c)
 
 char			**ft_split(char const *s, char c)
 {
-	char	**chaine;
+	char	**str;
 	int		i;
 	int		j;
 	int		index;
@@ -66,21 +66,21 @@ char			**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	chaine = NULL;
 	index = find_first_letter(s, 0, c);
-	if (!(chaine = (char**)malloc(sizeof(char*) *
-		(count_word(s, c) + 1))))
+	if (!(str = (char**)malloc(sizeof(char*) *
+		(count_word(s, c) + 1))) || !s)
 		return (NULL);
 	while (i < count_word(s, c))
 	{
 		index = find_first_letter(s, index, c);
 		fws = find_word_size(s, index, c);
-		if (!(chaine[i] = (char*)malloc(sizeof(char) * (fws + 1))))
+		if (!(str[i] = (char*)malloc(sizeof(char) * (fws + 1))))
 			return (NULL);
 		while (s[index] != c && s[index])
-			chaine[i][j++] = s[index++];
+			str[i][j++] = s[index++];
 		j = 0;
 		i++;
 	}
-	return (chaine);
+	str[i] = NULL;
+	return (str);
 }

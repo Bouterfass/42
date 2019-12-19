@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yobouter <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 16:31:18 by yobouter          #+#    #+#             */
+/*   Updated: 2019/12/16 16:34:51 by yobouter         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
-#define LIBFT_H
-#include <stdlib.h>
-#include <unistd.h>
-#include  <stdio.h>
+# define LIBFT_H
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
 
 void	ft_bzero(void *block, size_t size);
 int		ft_atoi(const char *str);
@@ -13,7 +25,7 @@ int		ft_toascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
 void	*ft_memccpy(void *to, void *from, int c, size_t size);
-int		ft_memcmp(const void *a1, const void *a2,size_t size);
+int		ft_memcmp(const void *a1, const void *a2, size_t size);
 void	*ft_memcpy(void *to, void *from, size_t size);
 void	*ft_memmove(void *to, const void *from, size_t size);
 void	*ft_memset(void *block, int c, size_t size);

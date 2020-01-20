@@ -6,49 +6,40 @@
 /*   By: yobouter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 19:31:34 by yobouter          #+#    #+#             */
-/*   Updated: 2019/12/11 19:38:11 by yobouter         ###   ########.fr       */
+/*   Updated: 2019/12/18 14:59:22 by yobouter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*my_memcpy(char *dest, char *src)
+static size_t	get_len(unsigned int n, size_t len)
 {
-	int i;
-
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	if (n == 0 && !len)
+		return (1);
+	else if (n == 0)
+		return (len);
+	return (get_len((n / 10), len + 1));
 }
 
 char			*ft_itoa(int n)
 {
-	char *str;
+	char			*tab;
+	size_t			size;
+	unsigned int	nbr;
 
-	if (!(str = (char*)malloc(sizeof(char) * 2)))
+	nbr = (n < 0) ? -n : n;
+	size = get_len(nbr, (n < 0) ? 1 : 0);
+	if (!(tab = (char *)malloc(size + 1)))
 		return (NULL);
-	if (n == -2147483648)
-	{
-		str = my_memcpy(str, "-2147483648");
-		return (str);
-	}
 	if (n < 0)
+		tab[0] = '-';
+	tab[size] = 0;
+	while (size-- > 1)
 	{
-		str[0] = '-';
-		str[1] = '\0';
-		str = ft_strjoin(str, ft_itoa(-n));
+		tab[size] = (nbr % 10) + '0';
+		nbr = nbr / 10;
 	}
-	else if (n >= 0 && n < 10)
-	{
-		str[0] = n + '0';
-		str[1] = '\0';
-	}
-	else if (n >= 10)
-		str = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
-	return (str);
+	if (n >= 0)
+		tab[0] = nbr + '0';
+	return (tab);
 }

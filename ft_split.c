@@ -6,7 +6,7 @@
 /*   By: yobouter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:54:11 by yobouter          #+#    #+#             */
-/*   Updated: 2019/12/18 14:37:31 by yobouter         ###   ########.fr       */
+/*   Updated: 2019/12/18 14:55:36 by yobouter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,24 @@ static int		count_word(char const *str, char c)
 	return (count);
 }
 
-static int		fws(char const *str, char c)
+static char		*copy_word(char const *str, char c)
 {
-	int count_letters;
-	int index;
-
-	index = 0;
-	count_letters = 0;
-	while (str[index] == c && str[index])
-		index++;
-	while (str[index] != c && str[index])
-	{
-		count_letters++;
-		index++;
-	}
-	return (count_letters);
-}
-
-int				full_set(char const *s, char c)
-{
-	int i;
+	char	*word;
+	int		i;
 
 	i = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-			return (0);
+	while (str[i] && str[i] != c)
 		i++;
-	} 
-	return (1);
+	if (!(word = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != c)
+	{
+		word[i] = str[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
 }
 
 char			**ft_split(char const *s, char c)
@@ -72,26 +61,24 @@ char			**ft_split(char const *s, char c)
 	char	**str;
 	int		i;
 	int		j;
-	int		k;
 
 	i = 0;
 	j = 0;
-	k = -1;
 	if (!s || !(str = (char**)malloc(sizeof(char*) *
-		(count_word(s, c) + 1))) || full_set(s, c))
+		(count_word(s, c) + 1))))
 		return (NULL);
-	while (i < count_word(s, c))
+	while (s[i])
 	{
-		if (!(str[i] = (char*)malloc(sizeof(char) * (fws(&s[++k], c) + 1))))
-			return (NULL);
-		while (s[k] == c)
-			k++;
-		while (s[k] != c && s[k])
-			str[i][j++] = s[k++];
-		str[i][j] = '\0';
-		j = 0;
-		i++;
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+		{
+			str[j] = copy_word(s + i, c);
+			j++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
 	}
-	str[i] = NULL;
+	str[j] = NULL;
 	return (str);
 }
